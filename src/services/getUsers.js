@@ -1,0 +1,22 @@
+async function getUsers() {
+
+    const requestOptions = {
+        method: "GET",
+        redirect: "follow"
+    };
+
+    try {
+        const response = await fetch("http://localhost/api_bot_pf/public_html/api/user/get_all_users", requestOptions);
+
+        const result = await response.json();
+        if (result.status === "sucess") {
+            return result.data;
+        } else if (result.status === "error") {
+            console.error(result.data);
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export default getUsers;

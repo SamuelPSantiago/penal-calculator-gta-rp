@@ -1,0 +1,342 @@
+[
+    {
+        "key": 12,
+        "value": "USAR EQUIPAMENTO BALISTICO",
+        "pena": 5
+    },
+    {
+        "key": 13,
+        "value": "USAR EQUIPAMENTO POLICIAL",
+        "pena": 5
+    },
+    {
+        "key": 14,
+        "value": "USAR MASCARA DE OCULTAÇÃO DO ROSTO",
+        "pena": 5
+    },
+    {
+        "key": 15,
+        "value": "RESISTÊNCIA A PRISÃO (FUGIR)",
+        "pena": 5
+    },
+    {
+        "key": 16,
+        "value": "OMISSÃO DE SOCORRO",
+        "pena": 10
+    },
+    {
+        "key": 17,
+        "value": "DANO AO PATRIMONIO PÚBLICO",
+        "pena": 10
+    },
+    {
+        "key": 18,
+        "value": "INVASÃO",
+        "pena": 10
+    },
+    {
+        "key": 19,
+        "value": "DIFAMAÇÃO, INJURIA E CALUNIA",
+        "pena": 0
+    },
+    {
+        "key": 20,
+        "value": "FURTO",
+        "pena": 15
+    },
+    {
+        "key": 21,
+        "value": "PORTE DE BALAS EXCEDIDO (MAXIMO 50 MUNIÇÕES) ",
+        "pena": 0
+    },
+    {
+        "key": 22,
+        "value": "FUGA DA ABORDAGEM POLICIAL",
+        "pena": 20
+    },
+    {
+        "key": 23,
+        "value": "TENTATIVA DE SUBORNO",
+        "pena": 15
+    },
+    {
+        "key": 24,
+        "value": "RECEPTAÇÃO",
+        "pena": 15
+    },
+    {
+        "key": 25,
+        "value": "TENTATIVA DE ROUBO",
+        "pena": 10
+    },
+    {
+        "key": 26,
+        "value": "FALSO TESTEMUNHO (PERJÚRIO)",
+        "pena": 10
+    },
+    {
+        "key": 27,
+        "value": "OBSTRUÇÃO DE JUSTIÇA",
+        "pena": 10
+    },
+    {
+        "key": 28,
+        "value": "DESOBEDIÊNCIA A ORDEM POLICAL",
+        "pena": 15
+    },
+    {
+        "key": 29,
+        "value": "APROPRIAÇÃO INDÉBITA",
+        "pena": 10
+    },
+    {
+        "key": 30,
+        "value": "INVASÃO DE PRIVACIDADE",
+        "pena": 10
+    },
+    {
+        "key": 31,
+        "value": "EXERCÍCIO ILEGAL DA PROFISSÃO",
+        "pena": 15
+    },
+    {
+        "key": 32,
+        "value": "USO DE MÁSCARA",
+        "pena": 0
+    },
+    {
+        "key": 33,
+        "value": "MULTAS PENDENTES",
+        "pena": 5
+    },
+    {
+        "key": 34,
+        "value": "DESORDEM E PERTURBAÇÃO DA PAZ",
+        "pena": 5
+    },
+    {
+        "key": 35,
+        "value": "PLACA CLONADA",
+        "pena": 10
+    },
+    {
+        "key": 36,
+        "value": "CORRIDA ILEGAL",
+        "pena": 15
+    },
+    {
+        "key": 37,
+        "value": " ASSALTO À CAIXA ELETRÔNICA",
+        "pena": 15
+    },
+    {
+        "key": 38,
+        "value": "ASSALTO À CAIXA REGISTRADORA",
+        "pena": 20
+    },
+    {
+        "key": 39,
+        "value": "ASSALTO A BANCO OU JOALHERIA",
+        "pena": 25
+    },
+    {
+        "key": 40,
+        "value": "ASSALTO À LOJA",
+        "pena": 25
+    },
+    {
+        "key": 41,
+        "value": "ASSALTO A CARRO FORTE",
+        "pena": 30
+    },
+    {
+        "key": 42,
+        "value": "PORTAR ALGEMA",
+        "pena": 10
+    },
+    {
+        "key": 43,
+        "value": "PORTAR LOCKPICK",
+        "pena": 10
+    },
+    {
+        "key": 44,
+        "value": "PORTAR C4",
+        "pena": 15
+    },
+    {
+        "key": 45,
+        "value": "PORTAR MASTERPICK",
+        "pena": 10
+    },
+    {
+        "key": 46,
+        "value": "PORTAR PENDRIVE",
+        "pena": 10
+    },
+    {
+        "key": 47,
+        "value": "PORTAR KEYCARD",
+        "pena": 10
+    },
+    {
+        "key": 48,
+        "value": "PORTAR CAPUZ",
+        "pena": 10
+    },
+    {
+        "key": 49,
+        "value": "PORTE ILEGAL DE ARMA LEVE",
+        "pena": 20
+    },
+    {
+        "key": 50,
+        "value": "ESTELIONATO",
+        "pena": 15
+    },
+    {
+        "key": 51,
+        "value": "PORTE ILEGAL DE ARMA PESADA",
+        "pena": 30
+    },
+    {
+        "key": 52,
+        "value": "TRÁFICO DE DROGAS (A PARTIR DE 6 UNIDADES)",
+        "pena": 15
+    },
+    {
+        "key": 53,
+        "value": "CONSUMO PRÓPRIO DE DROGAS (5 UNIDADES)",
+        "pena": 0
+    },
+    {
+        "key": 54,
+        "value": "PORTAR DINHEIRO SUJO",
+        "pena": 15
+    },
+    {
+        "key": 55,
+        "value": "TRÁFICO DE ORGÃOS",
+        "pena": 35
+    },
+    {
+        "key": 56,
+        "value": "TRÁFICO DE MUNIÇÃO",
+        "pena": 20
+    },
+    {
+        "key": 57,
+        "value": "TRÁFICO DE ARMAS",
+        "pena": 20
+    },
+    {
+        "key": 58,
+        "value": "ABUSO DE AUTORIDADE",
+        "pena": 0
+    },
+    {
+        "key": 59,
+        "value": "DESACATO À AUTORIDADE",
+        "pena": 35
+    },
+    {
+        "key": 60,
+        "value": "EXTORÇÃO",
+        "pena": 25
+    },
+    {
+        "key": 61,
+        "value": "FALSIDADE IDEOLOGICA",
+        "pena": 20
+    },
+    {
+        "key": 62,
+        "value": "DENUNCIAÇÃO CALUNIOSA",
+        "pena": 10
+    },
+    {
+        "key": 63,
+        "value": "CORRUPÇÃO ATIVA E PASSIVA",
+        "pena": 35
+    },
+    {
+        "key": 64,
+        "value": "AMEAÇA",
+        "pena": 25
+    },
+    {
+        "key": 65,
+        "value": "ATO OBSCENO EM PÚBLICO",
+        "pena": 10
+    },
+    {
+        "key": 66,
+        "value": "PORTE ILEGAL DE ARMA BRANCA",
+        "pena": 15
+    },
+    {
+        "key": 67,
+        "value": "FURTO/ROUBO DE VEÍCULOS",
+        "pena": 30
+    },
+    {
+        "key": 68,
+        "value": "LESÃO CORPORAL",
+        "pena": 15
+    },
+    {
+        "key": 69,
+        "value": "SEQUESTRO",
+        "pena": 20
+    },
+    {
+        "key": 70,
+        "value": "DESTRUIÇÃO DE EVIDÊNCIA FÍSICA",
+        "pena": 10
+    },
+    {
+        "key": 71,
+        "value": "FORMAÇÃO DE QUADRILHA",
+        "pena": 15
+    },
+    {
+        "key": 72,
+        "value": "TENTATIVA DE HOMICÍDIO",
+        "pena": 40
+    },
+    {
+        "key": 73,
+        "value": "HOMICÍDIO CULPOSO (SEM INTENÇÃO DE MATAR)",
+        "pena": 50
+    },
+    {
+        "key": 74,
+        "value": "LATROCINIO (ROUBO SEGUIDO DE MORTE)",
+        "pena": 80
+    },
+    {
+        "key": 75,
+        "value": "TENTATIVA DE HOMICÍDIO A UM SERVIDOR PUBLICO",
+        "pena": 60
+    },
+    {
+        "key": 76,
+        "value": "HOMICÍDIO DOLOSO (COM INTENÇÃO DE MATAR)",
+        "pena": 70
+    },
+    {
+        "key": 77,
+        "value": "FEMINICÍDIO",
+        "pena": 80
+    },
+    {
+        "key": 78,
+        "value": "HOMICÍDIO A UM SERVIDOR PUBLICO",
+        "pena": 100
+    },
+    {
+        "key": 79,
+        "value": "FUGA DA ABORDAGEM POLICIAL SEM MOTIVO",
+        "pena": 150
+    }
+]
