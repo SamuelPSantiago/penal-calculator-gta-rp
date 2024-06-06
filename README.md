@@ -11,3 +11,5 @@ A lista de VTRs é composta pelos dados fornecidos no vtrs.json que contém os I
 - Clonar o Repositório
 - Prencher com os seus dados os .json que estão no path /src/assets/config
 - Hospedar
+
+### O projeto ainda não está pronto
