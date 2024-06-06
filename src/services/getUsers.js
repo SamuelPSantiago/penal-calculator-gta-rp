@@ -1,3 +1,5 @@
+import requests from '../../assets/config/requests.json';
+
 async function getUsers() {
 
     const requestOptions = {
@@ -6,7 +8,7 @@ async function getUsers() {
     };
 
     try {
-        const response = await fetch("http://localhost/api_bot_pf/public_html/api/user/get_all_users", requestOptions);
+        const response = await fetch(requests.api_get_all_users, requestOptions);
 
         const result = await response.json();
         if (result.status === "sucess") {

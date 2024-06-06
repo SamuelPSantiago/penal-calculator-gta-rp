@@ -1,3 +1,5 @@
+import requests from '../../assets/config/requests.json';
+
 async function sendReport(content, file) {
 
     const formdata = new FormData();
@@ -11,7 +13,7 @@ async function sendReport(content, file) {
     };
 
     try {
-        const response = await fetch("https://discord.com/api/webhooks/1247687178801254410/VYHoxLL0HUrvm0adcUjsYgzPVC9CmjHZ-6g3PGnEztMRf9OQEZhWOdfg89nzBaqd2Sqx", requestOptions);
+        const response = await fetch(requests.webhook, requestOptions);
     } catch (error) {
         console.error(error);
     }
