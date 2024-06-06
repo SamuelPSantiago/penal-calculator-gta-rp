@@ -1,4 +1,4 @@
-import requests from '../../assets/config/requests.json';
+import requests from '../assets/config/requests.json';
 
 async function sendReport(content, file) {
 

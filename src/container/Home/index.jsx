@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import ReactSearchBox from "react-search-box";
 import PasteImage from '../../components/PasteImage';
 
-import getUsers from '../../services/getUsers';
-import filterQsv from '../../services/filterQsv';
-import getResponsible from '../../services/getResponsible';
+import { useUsersData, useOfficers, useAccusations, useForm, useCheckboxState, useVtrSelection, useFileUpload } from '../../services/hooks';
 import calculatePenalty from '../../services/calculatePenalty';
 import makeReport from '../../services/makeReport';
 import sendReport from '../../services/sendReport';
@@ -35,125 +33,28 @@ import {
 } from './style';
 
 function Home() {
-    const [formData, setFormData] = useState({ id_of: '', id_in: '' });
-    const [usersData, setUsersData] = useState(null);
-    const [selectedVtrs, setSelectedVtrs] = useState([]);
-    const [officersPresent, setOfficersPresent] = useState(null);
-    const [officerResponsible, setOfficerResponsible] = useState(null);
-    const [accusations, setAccusations] = useState([]);
+    const { formData, handleChange } = useForm({ id_of: '', id_in: '' });
+    const usersData = useUsersData();
+    const [selectedVtrs, handleVtrChange] = useVtrSelection(); // Initialize selectedVtrs before useOfficers
+    const { officersPresent, officerResponsible } = useOfficers(formData, selectedVtrs, usersData);
+    const { accusations, hmitigation, addAccusation, removeAccusation } = useAccusations();
+    const [mitigation, handleMitigationChange] = useCheckboxState({ adv: false, cc: false, rp: false });
+    const [aggravating, handleAggravatingChange] = useCheckboxState({ rm: false, rd: false, cm: false, vp: false });
+    const { image, file, handleImagePaste } = useFileUpload();
     const [penalty, setPenalty] = useState(0);
+    const [report, setReport] = useState('');
 
-    const [hmitigation, setHmitigation] = useState(true);
-    const [mitigation, setMitigation] = useState({ adv: false, cc: false, rp: false });
-    const [aggravating, setAggravating] = useState({ rm: false, rd: false, cm: false, vp: false });
-
-    const [image, setImage] = useState(null);
-    const [file, setFile] = useState(null);
-
-    const [report, setReport] = useState('')
-
-    useEffect(() => {
-        const fetchUsers = async () => {
-            const users = await getUsers();
-            setUsersData(users);
-        };
-
-        fetchUsers();
-
-    }, [selectedVtrs]);
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevFormData) => ({
-            ...prevFormData,
-            [name]: value
-        }));
-    };
-
-    const handleVtrChange = (e) => {
-        const { value, checked } = e.target;
-        setSelectedVtrs((prevSelectedVtrs) => {
-            if (checked) {
-                return [...prevSelectedVtrs, value];
-            } else {
-                return prevSelectedVtrs.filter(vtr => vtr !== value);
-            }
-        });
-    };
-
-    useEffect(() => {
-        const fetchOfficers = async () => {
-            if (usersData) {
-                const updatedOfficers = await filterQsv(formData.id_of, selectedVtrs, usersData);
-                setOfficersPresent(updatedOfficers);
-
-                const officer = await getResponsible(formData.id_of, usersData);
-                setOfficerResponsible(officer);
-            }
-        };
-
-        fetchOfficers();
-    }, [formData, selectedVtrs, usersData]);
-
-    const handleSelectAccusation = (selected) => {
-        const newAccusations = [...accusations, selected.item];
-        setAccusations(newAccusations);
-    };
-
-    const removeAccusation = (accusationToRemove) => {
-        setAccusations(accusations.filter(accusation => accusation !== accusationToRemove));
-    };
-
-    useEffect(() => {
-        const hasKeyInRange = accusations.some(accusation =>
-            (accusation.key >= 74 && accusation.key <= 78) ||
-            accusation.key === 59
-        );
-
-        if (hasKeyInRange) {
-            setHmitigation(false);
-            setMitigation({
-                adv: false,
-                cc: false,
-                rp: false
-            });
-        }
-        else
-            setHmitigation(true);
-    }, [accusations]);
-
-    const handleMitigationChange = (event) => {
-        const { value, checked } = event.target;
-        setMitigation((prevState) => ({
-            ...prevState,
-            [value]: checked,
-        }));
-    };
-
-    const handleAggravatingChange = (event) => {
-        const { value, checked } = event.target;
-        setAggravating((prevState) => ({
-            ...prevState,
-            [value]: checked,
-        }));
-    };
-
-    const handleImagePaste = (file, imageData) => {
-        setImage(imageData);
-        setFile(file);
-    };
-
-    const handleCalculatePenalty = () => {
+    const handleCalculatePenalty = useCallback(() => {
         const newPenalty = calculatePenalty(accusations, mitigation, aggravating);
         setPenalty(newPenalty);
 
         const newReport = makeReport(formData, officerResponsible, accusations, newPenalty, officersPresent);
         setReport(newReport);
-    }
+    }, [accusations, mitigation, aggravating, formData, officerResponsible, officersPresent]);
 
-    const handleSendReport = () => {
+    const handleSendReport = useCallback(() => {
         sendReport(report, file);
-    }
+    }, [report, file]);
 
     return (
         <Container>
