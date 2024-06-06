@@ -5,10 +5,10 @@ export const Textarea = styled.textarea`
 
   width: 100%;
   height: 40px;
-  color: ${White};
+  color: #fff;
   font-family: GGSans, serif;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 15px;
 
   border-radius: 4px;
   background-color: #1E1F22;
