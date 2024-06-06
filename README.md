@@ -13,3 +13,5 @@ A lista de VTRs é composta pelos dados fornecidos no vtrs.json que contém os I
 - Hospedar
 
 ### O projeto ainda não está pronto
+
+<a href="https://wakatime.com/badge/user/6ecf4756-d7cd-4132-b781-927116bd0328/project/d5cc1003-7cd8-4ae3-b354-2e1a58fa6c40"><img src="https://wakatime.com/badge/user/6ecf4756-d7cd-4132-b781-927116bd0328/project/d5cc1003-7cd8-4ae3-b354-2e1a58fa6c40.svg" alt="wakatime"></a>
