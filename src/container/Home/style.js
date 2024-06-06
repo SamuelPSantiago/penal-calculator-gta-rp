@@ -301,8 +301,9 @@ export const LineAccusationForm = styled.div`
     gap: 10px;
 `
 
-export const CrimeAccusationForm = styled.button`
+export const SelectedAccusationForm = styled.button`
     padding: 10px 15px 10px 15px;
+    margin-bottom: 5px;
     border: none;
     background-color: ${DarkBlack};
 

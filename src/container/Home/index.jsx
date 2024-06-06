@@ -39,7 +39,7 @@ import {
     CheckBoxForm,
     LabelCheckBoxForm,
     LineAccusationForm,
-    CrimeAccusationForm,
+    SelectedAccusationForm,
     ImageContainer,
     PastedImage,
     GreenButton,
@@ -138,9 +138,9 @@ function Home() {
                 </HeaderForm2>
                 {accusations.map((accusation, index) => (
                     <LineAccusationForm key={accusation.key || index}>
-                        <CrimeAccusationForm onClick={() => removeAccusation(accusation)}>
+                        <SelectedAccusationForm onClick={() => removeAccusation(accusation)}>
                             Art. {accusation.key} ({accusation.value})
-                        </CrimeAccusationForm>
+                        </SelectedAccusationForm>
                     </LineAccusationForm>
                 ))}
             </Form1>
