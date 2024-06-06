@@ -6,14 +6,14 @@ const GlobalStyles = createGlobalStyle`
 
     @font-face {
         font-family: 'SourceSerif';
-        src: url('/src/assets/fonts/SourceSerif4-Medium.ttf') format('truetype');
+        src: url('/fonts/SourceSerif4-Medium.ttf') format('truetype');
         font-weight: 400;
         font-style: normal;
     }
 
     @font-face {
         font-family: 'SourceSerif';
-        src: url('/src/assets/fonts/SourceSerif4-Black.ttf') format('truetype');
+        src: url('/fonts/SourceSerif4-Black.ttf') format('truetype');
         font-weight: 900;
         font-style: normal;
     }
