@@ -43,6 +43,7 @@ export const useOfficers = (formData, selectedVtrs, usersData) => {
 export const useAccusations = () => {
     const [accusations, setAccusations] = useState([]);
     const [hmitigation, setHmitigation] = useState(true);
+    const [mitigation, setMitigation] = useState({ adv: true, cc: true, rp: true });
 
     useEffect(() => {
         const hasKeyInRange = accusations.some(accusation =>
@@ -66,7 +67,7 @@ export const useAccusations = () => {
         setAccusations((prevAccusations) => prevAccusations.filter(accusation => accusation !== accusationToRemove));
     }, []);
 
-    return { accusations, hmitigation, addAccusation, removeAccusation };
+    return { accusations, hmitigation, mitigation, addAccusation, removeAccusation };
 };
 
 export const useForm = (initialState) => {

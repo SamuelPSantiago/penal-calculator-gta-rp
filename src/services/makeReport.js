@@ -1,4 +1,9 @@
 function makeReport(formData, responsible, accusations, penalty, officers) {
+    if (!formData || formData.id_in === '' || formData.id_of === '' || !responsible || !accusations || accusations.length === 0 || penalty === 0) {
+        alert("Algum campo está vazio, revise o relatório!");
+        return '';
+    }
+
     let accusationsString = '';
     accusations.forEach((accusation, index) => {
         if (index === accusations.length - 1)
@@ -9,7 +14,7 @@ function makeReport(formData, responsible, accusations, penalty, officers) {
 
     let officersString = '';
     officers.forEach(officer => {
-        officersString += "Ofc. <@" + officer.id_dc + ">, ";
+        officersString += "<@" + officer.id_dc + ">, ";
     });
 
     const date = new Date();

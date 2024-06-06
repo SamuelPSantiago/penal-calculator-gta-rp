@@ -3,7 +3,16 @@ import React, { useState, useCallback } from 'react';
 import ReactSearchBox from "react-search-box";
 import PasteImage from '../../components/PasteImage';
 
-import { useUsersData, useOfficers, useAccusations, useForm, useCheckboxState, useVtrSelection, useFileUpload } from '../../services/hooks';
+import {
+    useUsersData,
+    useOfficers,
+    useAccusations,
+    useForm,
+    useCheckboxState,
+    useVtrSelection,
+    useFileUpload
+} from '../../services/hooks';
+
 import calculatePenalty from '../../services/calculatePenalty';
 import makeReport from '../../services/makeReport';
 import sendReport from '../../services/sendReport';
@@ -35,10 +44,10 @@ import {
 function Home() {
     const { formData, handleChange } = useForm({ id_of: '', id_in: '' });
     const usersData = useUsersData();
-    const [selectedVtrs, handleVtrChange] = useVtrSelection(); // Initialize selectedVtrs before useOfficers
+    const [selectedVtrs, handleVtrChange] = useVtrSelection();
     const { officersPresent, officerResponsible } = useOfficers(formData, selectedVtrs, usersData);
     const { accusations, hmitigation, addAccusation, removeAccusation } = useAccusations();
-    const [mitigation, handleMitigationChange] = useCheckboxState({ adv: false, cc: false, rp: false });
+    const [mitigation, handleMitigationChange, setMitigation] = useCheckboxState({ adv: false, cc: false, rp: false });
     const [aggravating, handleAggravatingChange] = useCheckboxState({ rm: false, rd: false, cm: false, vp: false });
     const { image, file, handleImagePaste } = useFileUpload();
     const [penalty, setPenalty] = useState(0);
@@ -85,8 +94,8 @@ function Home() {
                 </LineForm>
                 <LineForm>
                     <LabelDataForm>Viaturas presentes:</LabelDataForm>
-                    {vtrs.map((vtr) => (
-                        <LineCheckBoxForm key={vtr.id}>
+                    {vtrs.map((vtr, index) => (
+                        <LineCheckBoxForm key={vtr.id || index}>
                             <CheckBoxForm
                                 type='checkbox'
                                 value={vtr.id}
@@ -103,15 +112,17 @@ function Home() {
                     <ReactSearchBox
                         placeholder="Procure o artigo que o indivíduo infringiu..."
                         data={penalCode}
-                        onSelect={(record) => handleSelectAccusation(record)}
+                        onSelect={(record) => addAccusation(record)}
                         autoFocus
                         leftIcon={<>📜</>}
                         iconBoxSize="48px"
                     />
                 </HeaderForm2>
-                {accusations.map((accusation) => (
-                    <LineAccusationForm key={accusation.key}>
-                        <CrimeAccusationForm onClick={() => { removeAccusation(accusation) }}>- Art. {accusation.key} ({accusation.value})</CrimeAccusationForm>
+                {accusations.map((accusation, index) => (
+                    <LineAccusationForm key={accusation.key || index}>
+                        <CrimeAccusationForm onClick={() => removeAccusation(accusation)}>
+                            - Art. {accusation.key} ({accusation.value})
+                        </CrimeAccusationForm>
                     </LineAccusationForm>
                 ))}
             </Form1>
@@ -211,6 +222,6 @@ function Home() {
             </Form2>
         </Container>
     );
-}
+};
 
 export default Home;
