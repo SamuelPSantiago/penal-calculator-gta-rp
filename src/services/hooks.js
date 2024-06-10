@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
-
 import getUsers from './getUsers';
 import filterQsv from './filterQsv';
 import getResponsible from './getResponsible';
 
+// Hook to fetch users data
 export const useUsersData = () => {
     const [usersData, setUsersData] = useState(null);
 
@@ -11,6 +11,7 @@ export const useUsersData = () => {
         const fetchUsers = async () => {
             const users = await getUsers();
             setUsersData(users);
+            console.log(users);
         };
 
         fetchUsers();
@@ -19,6 +20,7 @@ export const useUsersData = () => {
     return usersData;
 };
 
+// Hook to manage officers data
 export const useOfficers = (formData, selectedVtrs, usersData) => {
     const [officersPresent, setOfficersPresent] = useState(null);
     const [officerResponsible, setOfficerResponsible] = useState(null);
@@ -40,6 +42,7 @@ export const useOfficers = (formData, selectedVtrs, usersData) => {
     return { officersPresent, officerResponsible };
 };
 
+// Hook to manage accusations state
 export const useAccusations = () => {
     const [accusations, setAccusations] = useState([]);
     const [hmitigation, setHmitigation] = useState(true);
@@ -47,8 +50,7 @@ export const useAccusations = () => {
 
     useEffect(() => {
         const hasKeyInRange = accusations.some(accusation =>
-            (accusation.key >= 74 && accusation.key <= 78) ||
-            accusation.key === 59
+            (accusation.key >= 74 && accusation.key <= 78) || accusation.key === 59
         );
 
         if (hasKeyInRange) {
@@ -70,6 +72,7 @@ export const useAccusations = () => {
     return { accusations, hmitigation, mitigation, addAccusation, removeAccusation };
 };
 
+// Hook to manage form data
 export const useForm = (initialState) => {
     const [formData, setFormData] = useState(initialState);
 
@@ -81,6 +84,7 @@ export const useForm = (initialState) => {
     return { formData, handleChange };
 };
 
+// Hook to manage checkbox state
 export const useCheckboxState = (initialState) => {
     const [state, setState] = useState(initialState);
 
@@ -92,6 +96,7 @@ export const useCheckboxState = (initialState) => {
     return [state, handleChange];
 };
 
+// Hook to manage VTR selection
 export const useVtrSelection = () => {
     const [selectedVtrs, setSelectedVtrs] = useState([]);
 
@@ -109,6 +114,7 @@ export const useVtrSelection = () => {
     return [selectedVtrs, handleVtrChange];
 };
 
+// Hook to manage file upload
 export const useFileUpload = () => {
     const [image, setImage] = useState(null);
     const [file, setFile] = useState(null);

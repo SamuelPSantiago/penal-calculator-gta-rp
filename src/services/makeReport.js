@@ -13,9 +13,13 @@ function makeReport(formData, responsible, accusations, penalty, officers) {
     });
 
     let officersString = '';
-    officers.forEach(officer => {
-        officersString += "<@" + officer.id_dc + ">, ";
+    officers.forEach((officer, index) => {
+        officersString += "<@" + officer.id_dc + ">";
+        if (index < officers.length - 1) {
+            officersString += ", ";
+        }
     });
+
 
     const date = new Date();
 

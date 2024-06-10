@@ -48,34 +48,35 @@ import {
     Slider,
     Report
 } from './style';
+import getResponsible from '../../services/getResponsible';
 
 function Home() {
     const { formData, handleChange } = useForm({ id_of: '', id_in: '' });
     const usersData = useUsersData();
     const [selectedVtrs, handleVtrChange] = useVtrSelection();
     const { officersPresent, officerResponsible } = useOfficers(formData, selectedVtrs, usersData);
-    const { accusations, hmitigation, addAccusation, removeAccusation } = useAccusations();
-    const [mitigation, handleMitigationChange, setMitigation] = useCheckboxState({ adv: false, cc: false, rp: false });
+    const { accusations, hmitigation, mitigation, addAccusation, removeAccusation } = useAccusations();
+    const [mitigationState, handleMitigationChange] = useCheckboxState({ adv: false, cc: false, rp: false });
     const [aggravating, handleAggravatingChange] = useCheckboxState({ rm: false, rd: false, cm: false, vp: false });
     const { image, file, handleImagePaste } = useFileUpload();
     const [penalty, setPenalty] = useState(0);
     const [report, setReport] = useState('');
 
     const handleCalculatePenalty = useCallback(() => {
-        const newPenalty = calculatePenalty(accusations, mitigation, aggravating);
+        const newPenalty = calculatePenalty(accusations, mitigationState, aggravating);
         setPenalty(newPenalty);
 
         const newReport = makeReport(formData, officerResponsible, accusations, newPenalty, officersPresent);
         setReport(newReport);
-    }, [accusations, mitigation, aggravating, formData, officerResponsible, officersPresent]);
+    }, [accusations, mitigationState, aggravating, formData, officerResponsible, officersPresent]);
 
     const handleSendReport = useCallback(() => {
-        sendReport(report, file);
-    }, [report, file]);
+        sendReport(report, file, officerResponsible,officersPresent);
+    }, [report, file, officerResponsible, officersPresent]);
 
     const handleDeleteReport = () => {
         setReport('');
-    }
+    };
 
     return (
         <Container>
