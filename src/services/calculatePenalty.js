@@ -21,15 +21,20 @@ function calculatePenalty(accusations, mitigation, aggravating) {
         percentage += 0.3;
     if(aggravating.rd)
         percentage += 0.2;
-    if(aggravating.rm)
-        percentage -= 0.5;
-    if(aggravating.rm)
+    if(aggravating.vp)
         percentage += 0.5;
 
     if(desacato)
         percentage += 0.5;
 
-    let finalPenalty = Math.ceil(penalty * (1 + percentage));
+    let finalPenaltyP = penalty * (1 + percentage);
+
+    let finalPenalty = 0;
+    
+    if(aggravating.cm)
+        finalPenalty = Math.ceil(finalPenaltyP / 2);
+    else
+        finalPenalty = Math.ceil(finalPenaltyP);
 
     if (finalPenalty > 60)
         finalPenalty = 60;

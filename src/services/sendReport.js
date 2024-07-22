@@ -3,12 +3,12 @@ import requests from '../assets/config/requests.json';
 async function sendReport(content, file, responsible, officersPresent) {
     if (!file) {
         alert("Anexe a foto do indivíduo!");
-        return;
+        return false;
     }
 
     if (content.trim() === '') {
         alert("Gere o relatório antes, e o revise!");
-        return;
+        return false;
     }
 
     const formdata = new FormData();
@@ -23,6 +23,9 @@ async function sendReport(content, file, responsible, officersPresent) {
 
     try {
         const response = await fetch(requests.webhook, requestOptions);
+        if (!response.ok) {
+            throw new Error("Failed to send report");
+        }
 
         let id_list = [];
         id_list.push(responsible.id_dc);
@@ -30,23 +33,25 @@ async function sendReport(content, file, responsible, officersPresent) {
             id_list.push(officer.id_dc);
         });
 
-        const formdata = new FormData();
-        formdata.append("json", JSON.stringify({ id_dc_list: id_list }));
+        const formdata2 = new FormData();
+        formdata2.append("json", JSON.stringify({ id_dc_list: id_list }));
 
         const requestOptions2 = {
             method: "POST",
-            body: formdata,
+            body: formdata2,
             redirect: "follow"
         };
 
-        try {
-            const response = await fetch("https://vlittle.site/bot_pf/update_prisons.php", requestOptions2)
-        } catch (error) {
-            console.error(error);
+        const response2 = await fetch(requests.api_update_prisons, requestOptions2);
+        if (!response2.ok) {
+            throw new Error("Failed to update prisons");
         }
+
+        return true;
 
     } catch (error) {
         console.error(error);
+        return false;
     }
 }
 

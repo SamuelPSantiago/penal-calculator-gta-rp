@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import ReactSearchBox from "react-search-box";
 import PasteImage from '../../components/PasteImage';
@@ -46,13 +46,19 @@ import {
     RedButton,
     Switch,
     Slider,
-    Report
+    Report,
+    CircleLoad,
+    TitleLoad
 } from './style';
 import getResponsible from '../../services/getResponsible';
 
 function Home() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+    
     const { formData, handleChange } = useForm({ id_of: '', id_in: '' });
-    const usersData = useUsersData();
+    const usersData = useUsersData(formData);
     const [selectedVtrs, handleVtrChange] = useVtrSelection();
     const { officersPresent, officerResponsible } = useOfficers(formData, selectedVtrs, usersData);
     const { accusations, hmitigation, mitigation, addAccusation, removeAccusation } = useAccusations();
@@ -61,6 +67,18 @@ function Home() {
     const { image, file, handleImagePaste } = useFileUpload();
     const [penalty, setPenalty] = useState(0);
     const [report, setReport] = useState('');
+    const [send, setSend] = useState(false);
+
+    useEffect(() => {
+        if (send) {
+            window.scrollTo(0, 0);
+            document.body.style.overflow = 'hidden';
+
+            return () => {
+                document.body.style.overflow = 'auto';
+            };
+        }
+    }, [send]);
 
     const handleCalculatePenalty = useCallback(() => {
         const newPenalty = calculatePenalty(accusations, mitigationState, aggravating);
@@ -70,8 +88,10 @@ function Home() {
         setReport(newReport);
     }, [accusations, mitigationState, aggravating, formData, officerResponsible, officersPresent]);
 
-    const handleSendReport = useCallback(() => {
-        sendReport(report, file, officerResponsible,officersPresent);
+    const handleSendReport = useCallback(async () => {
+        const success = await sendReport(report, file, officerResponsible, officersPresent);
+        if (success)
+            setSend(true);
     }, [report, file, officerResponsible, officersPresent]);
 
     const handleDeleteReport = () => {
@@ -265,6 +285,12 @@ function Home() {
                     <GreenButton onClick={handleCalculatePenalty}>Gerar relatório</GreenButton>
                 )}
             </Form2>
+            {send &&
+                <CircleLoad>
+                    <TitleLoad>Envio para o Discord realizado com sucesso</TitleLoad>
+                    <TitleLoad>Recarregue a página quando for realizar a próxima prisão</TitleLoad>
+                </CircleLoad>
+            }
         </Container>
     );
 };

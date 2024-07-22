@@ -3,19 +3,36 @@ import getUsers from './getUsers';
 import filterQsv from './filterQsv';
 import getResponsible from './getResponsible';
 
+// Debounce hook to delay execution of a function
+const useDebounce = (value, delay) => {
+    const [debouncedValue, setDebouncedValue] = useState(value);
+
+    useEffect(() => {
+        const handler = setTimeout(() => {
+            setDebouncedValue(value);
+        }, delay);
+
+        return () => {
+            clearTimeout(handler);
+        };
+    }, [value, delay]);
+
+    return debouncedValue;
+};
+
 // Hook to fetch users data
-export const useUsersData = () => {
+export const useUsersData = (formData) => {
     const [usersData, setUsersData] = useState(null);
+    const debouncedFormData = useDebounce(formData, 300); // 300ms delay
 
     useEffect(() => {
         const fetchUsers = async () => {
             const users = await getUsers();
             setUsersData(users);
-            console.log(users);
         };
 
         fetchUsers();
-    }, []);
+    }, [debouncedFormData]);
 
     return usersData;
 };
@@ -24,20 +41,21 @@ export const useUsersData = () => {
 export const useOfficers = (formData, selectedVtrs, usersData) => {
     const [officersPresent, setOfficersPresent] = useState(null);
     const [officerResponsible, setOfficerResponsible] = useState(null);
+    const debouncedFormData = useDebounce(formData, 300); // 300ms delay
 
     useEffect(() => {
         const fetchOfficers = async () => {
             if (usersData) {
-                const updatedOfficers = await filterQsv(formData.id_of, selectedVtrs, usersData);
+                const updatedOfficers = await filterQsv(debouncedFormData.id_of, selectedVtrs, usersData);
                 setOfficersPresent(updatedOfficers);
 
-                const officer = await getResponsible(formData.id_of, usersData);
+                const officer = await getResponsible(debouncedFormData.id_of, usersData);
                 setOfficerResponsible(officer);
             }
         };
 
         fetchOfficers();
-    }, [formData, selectedVtrs, usersData]);
+    }, [debouncedFormData, selectedVtrs, usersData]);
 
     return { officersPresent, officerResponsible };
 };

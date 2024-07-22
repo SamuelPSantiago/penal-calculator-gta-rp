@@ -375,4 +375,67 @@ export const Report = styled.pre`
     font-size: 16px;
     background-color: ${DarkBlack};
     border-radius: 5px;
+
+    max-width: 75%;
+    white-space: pre-wrap;
+    word-break: normal;
+`;
+
+export const CircleLoad = styled.div`
+    width: 100px;
+    height: 100px;
+    background-color: ${Green};
+    border-radius: 50%;
+    animation: grow 5s forwards;
+    animation-iteration-count: 1;
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    @keyframes grow {
+        0% {
+            width: 100px;
+            height: 100px;
+        }
+        100% {
+            width: 3000px;
+            height: 3000px;
+        }
+    }
+`
+
+export const TitleLoad = styled.h2`
+    text-transform: uppercase;
+
+    padding: 0 0 10px 0;
+
+    font-family: GGSans, serif;
+    font-weight: 600;
+    font-size: 23px;
+    color: ${White};
+
+    animation: grow2 5s forwards;
+    animation-iteration-count: 1;
+
+    @keyframes grow2 {
+        0% {
+            color: ${Green};
+            font-size: 0px;
+        }
+        19% {
+            color: ${Green};
+            font-size: 0px;
+        }
+        20% {
+            color: ${White};
+            font-size: 23px;
+        }
+    }
 `
